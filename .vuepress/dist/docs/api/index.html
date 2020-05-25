@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>api接口规范</title>
+    <meta name="generator" content="VuePress 1.5.0">
+    
+    <meta name="description" content="">
+    <link rel="preload" href="/assets/css/0.styles.c77f5ec9.css" as="style"><link rel="preload" href="/assets/js/app.6dfcc4c1.js" as="script"><link rel="preload" href="/assets/js/2.078aaf2f.js" as="script"><link rel="preload" href="/assets/js/7.c0dbc225.js" as="script"><link rel="prefetch" href="/assets/js/10.c02956ea.js"><link rel="prefetch" href="/assets/js/11.9ebbe32c.js"><link rel="prefetch" href="/assets/js/3.a94f694e.js"><link rel="prefetch" href="/assets/js/4.5caad02f.js"><link rel="prefetch" href="/assets/js/5.fdd8b624.js"><link rel="prefetch" href="/assets/js/6.6c533681.js"><link rel="prefetch" href="/assets/js/8.9cccb5ce.js"><link rel="prefetch" href="/assets/js/9.820e3370.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.c77f5ec9.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <!----> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="api接口规范"><a href="#api接口规范" class="header-anchor">#</a> api接口规范</h1> <div class="custom-block warning"><p class="custom-block-title">注意</p> <p>前后端交互，所有字段一律采用<strong>小写格式</strong></p></div> <h2 id="api接口返回数据格式"><a href="#api接口返回数据格式" class="header-anchor">#</a> api接口返回数据格式</h2> <div class="language-js extra-class"><pre class="language-js"><code><span class="token punctuation">{</span>
+	code<span class="token operator">:</span><span class="token number">0</span><span class="token punctuation">,</span>      
+	msg<span class="token operator">:</span><span class="token string">&quot;ok&quot;</span><span class="token punctuation">,</span>        
+	data<span class="token operator">:</span><span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="字段说明"><a href="#字段说明" class="header-anchor">#</a> 字段说明</h3> <table><thead><tr><th>字段名</th> <th style="text-align:center;">字段描述</th> <th style="text-align:left;">说明</th></tr></thead> <tbody><tr><td>code</td> <td style="text-align:center;">状态码</td> <td style="text-align:left;">保留字段</td></tr> <tr><td>msg</td> <td style="text-align:center;">请求信息描述</td> <td style="text-align:left;">msg=&quot;ok&quot;表明请求成功，msg不是&quot;ok&quot;，表示请求失败，此时msg表示错误信息</td></tr> <tr><td>data</td> <td style="text-align:center;">后台响应的数据体</td> <td style="text-align:left;"></td></tr></tbody></table> <h2 id="请求方法说明"><a href="#请求方法说明" class="header-anchor">#</a> 请求方法说明</h2> <div class="custom-block tip"><p class="custom-block-title">method</p> <p>现阶段常用的请求方法主要是<strong>GET</strong>，与<strong>POST</strong>，针对GET 与 POST 应当根据使用场景和目的进行区分。同时对于常见的
+增删改查应有明确的动词以作区分。</p></div> <table><thead><tr><th>操作</th> <th style="text-align:center;">请求方法</th> <th style="text-align:left;">动词前缀</th></tr></thead> <tbody><tr><td>新增</td> <td style="text-align:center;">POST</td> <td style="text-align:left;">add</td></tr> <tr><td>修改</td> <td style="text-align:center;">POST</td> <td style="text-align:left;">update</td></tr> <tr><td>查询</td> <td style="text-align:center;">GET</td> <td style="text-align:left;">get</td></tr> <tr><td>删除/禁用</td> <td style="text-align:center;">POST</td> <td style="text-align:left;">del</td></tr></tbody></table> <ul><li>注： 当<code>GET</code>请求参数过多时（&gt;5），应考虑使用<code>POST</code>方法。</li></ul> <h2 id="key-value-规则"><a href="#key-value-规则" class="header-anchor">#</a> key-value 规则</h2> <div class="custom-block tip"><p class="custom-block-title">key-value</p> <p>通常前端从后端获取数据的一方面用于页面展示，另一方面是给用户提供可选列表，确保参数的正确性。</p> <ul><li>针对第一种情况，后台数据无需回传，后台应直接返回客户端需要展示的数据（前端不应再对数据进行二次转化）。</li> <li>针对第二种情况，数据通常需要回传，这时通过<strong>key-value</strong>规则约束数据格式。</li></ul></div> <h3 id="key-value-字段说明"><a href="#key-value-字段说明" class="header-anchor">#</a> key-value 字段说明</h3> <table><thead><tr><th>字段</th> <th style="text-align:center;">说明</th></tr></thead> <tbody><tr><td>key</td> <td style="text-align:center;">数据id,用于回传，通常对应数据库中的oid</td></tr> <tr><td>value</td> <td style="text-align:center;">数据值，用于前端直接展示</td></tr></tbody></table> <ul><li>案例</li></ul> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;data&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;type001&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;焊接&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;type002&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;装配&quot;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">&quot;key&quot;</span><span class="token operator">:</span> <span class="token string">&quot;type003&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;value&quot;</span><span class="token operator">:</span> <span class="token string">&quot;打磨&quot;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;msg&quot;</span><span class="token operator">:</span> <span class="token string">&quot;ok&quot;</span><span class="token punctuation">,</span>
+	<span class="token property">&quot;code&quot;</span><span class="token operator">:</span><span class="token number">0</span>
+<span class="token punctuation">}</span>
+
+</code></pre></div><div class="custom-block danger"><p class="custom-block-title">注意</p> <p>前端在进行数据回传时，应该准寻命名规范约束，回传带有明确含义的字段。</p> <ul><li>不推荐的写法 ： part : &quot;001&quot;</li> <li>推荐到写法  : partid : &quot;001&quot;</li></ul></div></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.6dfcc4c1.js" defer></script><script src="/assets/js/2.078aaf2f.js" defer></script><script src="/assets/js/7.c0dbc225.js" defer></script>
+  </body>
+</html>

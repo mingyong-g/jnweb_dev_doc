@@ -1,6 +1,7 @@
 module.exports = {
     title: '江南工业APP开发指南',
     description: 'JN-INFO-DEV-DOC',
+		base:'/jnweb_dev_doc/',
     head: [
         ['link', {
             rel: 'icon',
