@@ -1,0 +1,13 @@
+{
+  "name": "jnweb_dev_doc",
+  "version": "1.0.0",
+  "description": "jnwed dev doc",
+  "main": "index.js",
+  "scripts":{
+			"test": "echo \"Error: no test specified\" && exit 1",
+      "dev": "vuepress dev docs",
+      "build": "vuepress build docs"
+  },
+  "author": "mingyong.g",
+  "license": "ISC"
+}
